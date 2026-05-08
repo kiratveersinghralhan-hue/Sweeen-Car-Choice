@@ -25,9 +25,9 @@ const razorpay = hasRazorpay ? new Razorpay({
   key_secret: process.env.RAZORPAY_KEY_SECRET
 }) : null;
 
-const hasSupabaseService = Boolean(process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY);
+const hasSupabaseService = Boolean(process.env.https://cbhgurjvteykadaichog.supabase.co && process.env.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNiaGd1cmp2dGV5a2FkYWljaG9nIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyMzg3ODgsImV4cCI6MjA5MzgxNDc4OH0.ORDzwjoDef11pFYbWyD4twIGa7PqxJzrmKAuNEsURmA);
 const supabaseAdmin = hasSupabaseService
-  ? createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
+  ? createClient(process.env.https://cbhgurjvteykadaichog.supabase.co, process.env.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNiaGd1cmp2dGV5a2FkYWljaG9nIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgyMzg3ODgsImV4cCI6MjA5MzgxNDc4OH0.ORDzwjoDef11pFYbWyD4twIGa7PqxJzrmKAuNEsURmA, { auth: { persistSession: false } })
   : null;
 
 function rupeesToPaise(amount) {
