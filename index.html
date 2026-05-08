@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sween Car Choice Patiala | Car Accessories Store</title>
+  <meta name="description" content="Professional ecommerce website demo for Sween Car Choice Patiala: car audio, GPS, accessories, seat covers and modification parts." />
+  <meta name="theme-color" content="#b5121b" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div id="intro" class="intro-screen" aria-hidden="true">
+    <div class="intro-shell">
+      <div class="intro-mark">SC</div>
+      <div class="intro-copy">
+        <span class="intro-kicker">Sween Car Choice • Patiala</span>
+        <strong>Premium car accessories</strong>
+        <p>Clean catalogue, quick inquiry and professional fitment support.</p>
+        <div class="intro-line"><span></span></div>
+      </div>
+    </div>
+  </div>
+  <header class="site-header" id="top">
+    <a class="brand" href="#home" aria-label="Sween Car Choice home">
+      <span class="brand-mark">SC</span>
+      <span><strong>Sween Car Choice</strong><small>Patiala</small></span>
+    </a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#catalog">Shop</a>
+      <a href="#about">About</a>
+      <a href="#inquiry">Inquiry</a>
+      <a href="#admin">Admin</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="themeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">Mode</button>
+      <button class="cart-btn" id="openCart" aria-label="Open cart">Cart <span id="cartCount">0</span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section" id="home">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Sween Car Choice • Patiala</p>
+        <h1>Premium car accessories with a clean buying experience.</h1>
+        <p class="hero-text">A minimal ecommerce storefront for audio systems, GPS tracking, seat covers, lighting and curated modifications — with cart, inquiry capture and owner-side database records.</p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="#catalog">Start shopping</a>
+          <a class="secondary-btn" href="https://wa.me/919814951999" target="_blank" rel="noopener">WhatsApp shop</a>
+        </div>
+        <div class="trust-grid">
+          <div><strong>Car fitment</strong><span>Make, model and year filters</span></div>
+          <div><strong>Admin control</strong><span>Add, edit and remove stock</span></div>
+          <div><strong>Local support</strong><span>Call, WhatsApp and in-store fitment</span></div>
+          <div><strong>Saved leads</strong><span>Orders and inquiries stored in database</span></div>
+        </div>
+      </div>
+      <div class="hero-visual reveal" aria-label="Featured store information">
+        <div class="store-card glass">
+          <div class="store-card-head">
+            <span>Featured store</span>
+            <strong>Red & white premium storefront</strong>
+          </div>
+          <div class="store-card-main">
+            <h2>Sween Car Choice</h2>
+            <p>Audio systems, infotainment upgrades, reverse cameras, GPS tracking, lighting, seat covers and selected upgrade parts for Patiala drivers.</p>
+          </div>
+          <div class="store-card-list">
+            <div><span>Location</span><strong>Near Yashodha Motor, Lower Mall</strong></div>
+            <div><span>Support</span><strong>+91 98149 51999</strong></div>
+            <div><span>Popular fitment</span><strong id="heroFitment">Hyundai Creta 2023</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section quick-categories reveal" aria-label="Popular categories">
+      <button data-category="Audio" class="category-chip">Audio Systems</button>
+      <button data-category="GPS">GPS Tracking</button>
+      <button data-category="Seat Covers">Seat Covers</button>
+      <button data-category="Lighting">Lighting</button>
+      <button data-category="4x4">4x4 Mods</button>
+      <button data-category="Accessories">Accessories</button>
+    </section>
+
+    <section class="section catalog-section" id="catalog">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Catalog</p>
+        <h2>Find the right product faster.</h2>
+        <p>Simple ecommerce layout with searchable products, stock count, detailed product pages, similar items and cart checkout.</p>
+      </div>
+
+      <div class="filter-panel glass reveal">
+        <label>
+          Search products
+          <input id="searchInput" type="search" placeholder="Search stereo, seat cover, GPS..." />
+        </label>
+        <label>
+          Make
+          <select id="makeSelect"><option value="">Any make</option></select>
+        </label>
+        <label>
+          Model
+          <select id="modelSelect"><option value="">Any model</option></select>
+        </label>
+        <label>
+          Year
+          <select id="yearSelect"><option value="">Any year</option></select>
+        </label>
+        <label>
+          Category
+          <select id="categorySelect"><option value="">All categories</option></select>
+        </label>
+        <button id="resetFilters" class="secondary-btn">Reset</button>
+      </div>
+
+      <div class="catalog-toolbar reveal">
+        <p><span id="resultCount">0</span> products</p>
+        <select id="sortSelect" aria-label="Sort products">
+          <option value="featured">Featured</option>
+          <option value="priceLow">Price: Low to High</option>
+          <option value="priceHigh">Price: High to Low</option>
+          <option value="stock">In stock first</option>
+        </select>
+      </div>
+
+      <div id="productGrid" class="product-grid"></div>
+      <div id="emptyState" class="empty-state glass hidden">
+        <h3>No exact match found</h3>
+        <p>Try a different model, year or category.</p>
+      </div>
+    </section>
+
+    <section class="section about-section" id="about">
+      <div class="about-card glass reveal">
+        <div>
+          <p class="eyebrow">About the shop</p>
+          <h2>Sween Car Choice, Patiala</h2>
+          <p>A polished ecommerce demo for a car accessories and modification shop. The website is structured for real inventory, coupons, orders and customer inquiries using only Supabase, Formspree and optional Razorpay Payment Links.</p>
+          <div class="about-list">
+            <span>Near Yashodha Motor, above Union Bank, Lower Mall, Patiala, Punjab 147001</span>
+            <span>+91 98149 51999</span>
+            <span>Audio systems, GPS tracking, cameras, lighting, seat covers and accessories</span>
+          </div>
+        </div>
+        <div class="service-stack">
+          <div><strong>01</strong><span>Product catalog with fitment filters</span></div>
+          <div><strong>02</strong><span>Cart, coupons and checkout</span></div>
+          <div><strong>03</strong><span>Admin inventory manager</span></div>
+          <div><strong>04</strong><span>Orders and inquiry records</span></div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section inquiry-section" id="inquiry">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Inquiry</p>
+        <h2>Need help choosing the right upgrade?</h2>
+        <p>Customers can ask for fitment help, price confirmation or installation support. Every inquiry is saved to Supabase when connected, and also works locally in demo mode.</p>
+      </div>
+      <div class="inquiry-card glass reveal">
+        <form id="inquiryForm" class="inquiry-form">
+          <label>Name<input id="inquiryName" required placeholder="Customer name" /></label>
+          <label>Phone<input id="inquiryPhone" required placeholder="Phone / WhatsApp" /></label>
+          <label>Email<input id="inquiryEmail" type="email" placeholder="Email optional" /></label>
+          <label>Reason
+            <select id="inquiryReason" required>
+              <option value="">Select reason</option>
+              <option>Product availability</option>
+              <option>Car fitment help</option>
+              <option>Installation appointment</option>
+              <option>Price quotation</option>
+              <option>Custom modification</option>
+            </select>
+          </label>
+          <label class="wide">Interested product<input id="inquiryProduct" placeholder="Product name or category" /></label>
+          <label class="wide">Car details<input id="inquiryCar" placeholder="Example: Hyundai Creta 2023" /></label>
+          <label class="wide">Message<textarea id="inquiryMessage" rows="4" placeholder="Tell us what you need help with..."></textarea></label>
+          <div class="form-actions wide">
+            <button class="primary-btn" type="submit">Send inquiry</button>
+            <a class="secondary-btn" href="https://wa.me/919814951999" target="_blank" rel="noopener">WhatsApp directly</a>
+          </div>
+          <p id="inquiryHint" class="form-hint wide"></p>
+        </form>
+        <div class="inquiry-aside">
+          <span class="badge">Customer support</span>
+          <h3>Saved for follow-up</h3>
+          <p>Inquiry entries include name, phone, reason, product interest, car details and message so the shop can call or WhatsApp the customer later.</p>
+          <div class="mini-contact">
+            <div><span>Phone</span><strong>+91 98149 51999</strong></div>
+            <div><span>Location</span><strong>Lower Mall, Patiala</strong></div>
+            <div><span>Database</span><strong>Supabase inquiries table</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section admin-section" id="admin">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Owner Panel</p>
+        <h2>Admin inventory manager.</h2>
+        <p>Login with a registered Supabase Auth email. Demo mode: <strong>demo@sweencarchoice.in</strong> / <strong>admin123</strong>.</p>
+      </div>
+
+      <div id="adminLogin" class="admin-login glass reveal">
+        <input id="adminEmail" type="email" placeholder="Admin email" autocomplete="email" />
+        <input id="adminPassword" type="password" placeholder="Password" autocomplete="current-password" />
+        <button id="loginBtn" class="primary-btn">Login</button>
+        <p id="loginHint" class="form-hint"></p>
+      </div>
+
+      <div id="adminPanel" class="admin-panel hidden">
+        <div class="admin-top glass">
+          <div>
+            <h3>Product Listings</h3>
+            <p>Add, update or delete live products.</p>
+          </div>
+          <button id="logoutBtn" class="secondary-btn">Logout</button>
+        </div>
+
+        <form id="productForm" class="product-form glass">
+          <input type="hidden" id="productId" />
+          <label>Name<input id="pName" required placeholder="9 inch Android Stereo" /></label>
+          <label>Brand<input id="pBrand" placeholder="Sony / Pioneer / Sween" /></label>
+          <label>Category<input id="pCategory" required placeholder="Audio" /></label>
+          <label>Price ₹<input id="pPrice" type="number" min="0" required placeholder="14999" /></label>
+          <label>MRP ₹<input id="pCompare" type="number" min="0" placeholder="18999" /></label>
+          <label>Qty<input id="pQty" type="number" min="0" required placeholder="6" /></label>
+          <label>Make<input id="pMake" placeholder="Hyundai" /></label>
+          <label>Model<input id="pModel" placeholder="Creta" /></label>
+          <label>Year from<input id="pYearFrom" type="number" placeholder="2018" /></label>
+          <label>Year to<input id="pYearTo" type="number" placeholder="2026" /></label>
+          <label class="wide">Image URL<input id="pImage" placeholder="https://..." /></label>
+          <label class="wide">Or upload image<input id="pImageFile" type="file" accept="image/*" /></label>
+          <label class="wide">Short description<textarea id="pDesc" rows="3" placeholder="Wireless CarPlay, Android Auto, DSP audio..."></textarea></label>
+          <label class="wide">Specs JSON<textarea id="pSpecs" rows="3" placeholder='{"Warranty":"1 year","Installation":"Available"}'></textarea></label>
+          <label class="check"><input id="pFeatured" type="checkbox" /> Featured product</label>
+          <div class="form-actions wide">
+            <button class="primary-btn" type="submit">Save product</button>
+            <button class="secondary-btn" type="button" id="clearProductForm">Clear</button>
+          </div>
+        </form>
+
+        <div class="admin-grid">
+          <div class="glass admin-list-wrap">
+            <h3>Current products</h3>
+            <div id="adminProducts" class="admin-products"></div>
+          </div>
+          <div class="glass coupons-wrap">
+            <h3>Coupons</h3>
+            <form id="couponForm" class="coupon-form">
+              <input id="cCode" placeholder="SWEEN10" required />
+              <select id="cType"><option value="percent">Percent</option><option value="flat">Flat ₹</option></select>
+              <input id="cValue" type="number" min="1" placeholder="10" required />
+              <input id="cMin" type="number" min="0" placeholder="Min cart" />
+              <button class="primary-btn" type="submit">Add coupon</button>
+            </form>
+            <div id="couponList" class="coupon-list"></div>
+          </div>
+          <div class="glass admin-list-wrap">
+            <h3>Recent orders</h3>
+            <p class="admin-note">Checkout records appear here after a customer places an order.</p>
+            <div id="adminOrders" class="admin-records"></div>
+          </div>
+          <div class="glass admin-list-wrap">
+            <h3>Customer inquiries</h3>
+            <p class="admin-note">Lead records from the inquiry form and product inquiry buttons.</p>
+            <div id="adminInquiries" class="admin-records"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <aside id="cartDrawer" class="cart-drawer glass" aria-hidden="true">
+    <div class="cart-head">
+      <h2>Your cart</h2>
+      <button id="closeCart" class="icon-btn" aria-label="Close cart">×</button>
+    </div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="coupon-row">
+      <input id="couponInput" placeholder="Coupon code" />
+      <button id="applyCoupon" class="secondary-btn">Apply</button>
+    </div>
+    <p id="couponMessage" class="form-hint"></p>
+    <div class="customer-box">
+      <input id="customerName" placeholder="Full name" />
+      <input id="customerPhone" placeholder="Phone" />
+      <input id="customerEmail" type="email" placeholder="Email" />
+      <select id="checkoutReason" aria-label="Reason for order">
+        <option value="Online product order">Online product order</option>
+        <option value="Need installation support">Need installation support</option>
+        <option value="Confirm fitment before dispatch">Confirm fitment before dispatch</option>
+        <option value="Store pickup inquiry">Store pickup inquiry</option>
+      </select>
+      <textarea id="customerAddress" rows="2" placeholder="Delivery address / installation notes"></textarea>
+    </div>
+    <div class="cart-summary">
+      <div><span>Subtotal</span><strong id="subtotalText">₹0</strong></div>
+      <div><span>Discount</span><strong id="discountText">₹0</strong></div>
+      <div><span>Delivery</span><strong id="shippingText">₹0</strong></div>
+      <div class="total"><span>Total</span><strong id="totalText">₹0</strong></div>
+    </div>
+    <button id="checkoutBtn" class="primary-btn checkout-btn">Place order / Send inquiry</button>
+    <p class="checkout-note">Mobile-friendly static checkout: saves the order to Supabase/local demo, can email through Formspree, and can show WhatsApp or Razorpay Payment Link next steps.</p>
+    <div id="checkoutResult" class="checkout-result hidden"></div>
+  </aside>
+
+  <div id="modalBackdrop" class="modal-backdrop hidden"></div>
+  <section id="productModal" class="product-modal glass hidden" aria-hidden="true">
+    <button id="closeModal" class="icon-btn modal-close" aria-label="Close product details">×</button>
+    <div id="modalContent"></div>
+  </section>
+
+  <div id="toast" class="toast"></div>
+  <a href="#top" class="scroll-top" aria-label="Scroll to top">↑</a>
+  <script src="app.js" defer></script>
+</body>
+</html>
