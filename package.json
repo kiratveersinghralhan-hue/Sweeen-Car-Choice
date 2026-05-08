@@ -1,0 +1,20 @@
+{
+  "name": "sween-car-choice-ecommerce",
+  "version": "1.0.0",
+  "description": "Modern ecommerce website demo for Sween Car Choice Patiala with Supabase admin and Razorpay checkout.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "razorpay": "^2.9.6"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
